@@ -14,6 +14,30 @@ class User < ApplicationRecord
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
 
+  # Задача 49-1 — Валидации: email, username
+  # Пункт 1. Проверка формата электронной почты пользователя
+  validates :email, :format => {
+    :with => /^[\w\.\-+]+@[a-zA-Z\d\-]+(\.[\w\-]+)*\.[a-zA-Z]{1,4}$/,
+    :multiline => true,
+    :message => "Пожалуйста не врите!"
+  }
+
+  # Задача 49-1 — Валидации: email, username
+  # Пункт 2. Проверка максимальной длины юзернейма пользователя (не больше 40 символов)
+  validates :username, :length => {
+    :maximum => 40,
+    :too_long  => "должно быть не более %{count} символов"
+  }
+
+  # Задача 49-1 — Валидации: email, username
+  # Пункт 3. Проверка формата юзернейма пользователя (только латинские буквы, цифры, и знак _)
+  validates :username, :format => {
+    :with => /^[\w]+$/,
+    :multiline => true,
+    :message => "Введите латинские буквы, цифры, или знаки _"
+  }
+
+
   # Виртуальное поле, которое не сохраняется в базу. Из него перед сохранением читается пароль,
   # и сохраняется в базу уже зашифрованная версия пароля в
   attr_accessor :password

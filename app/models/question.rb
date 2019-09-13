@@ -10,7 +10,12 @@ class Question < ApplicationRecord
 
   validates :text, :user, presence: true
 
-
+  # Задача 49-1 — Валидации: email, username
+  # Пункт 4. Проверка максимальной длины текста вопроса (максимум 255 символов)
+  validates :text, :length => {
+    :maximum => 255,
+    :too_long  => "должно быть не более %{count} символов"
+  }
 
   # before_validation :before_validation
   # after_validation :after_validation
