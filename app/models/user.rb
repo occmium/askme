@@ -100,6 +100,7 @@ class User < ApplicationRecord
   end
 
   def username_in_lowercase
+    return nil if username == nil
     self.username = username.downcase
   end
 end
