@@ -1,5 +1,4 @@
 class Question < ApplicationRecord
-
   # Эта команда добавляет связь с моделью User на уровне объектов, она же
   # добавляет метод .user к данному объекту.
   #
@@ -12,10 +11,7 @@ class Question < ApplicationRecord
 
   # Задача 49-1 — Валидации: email, username
   # Пункт 4. Проверка максимальной длины текста вопроса (максимум 255 символов)
-  validates :text, :length => {
-    :maximum => 255,
-    :too_long  => "должно быть не более %{count} символов"
-  }
+  validates :text, length: { maximum: 255 }
 
   # before_validation :before_validation
   # after_validation :after_validation
@@ -42,5 +38,4 @@ class Question < ApplicationRecord
   #     end
   #   end
   # end
-
 end
