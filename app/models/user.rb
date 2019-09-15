@@ -89,7 +89,8 @@ class User < ApplicationRecord
   end
 
   def username_in_lowercase
-    return if username == nil
-    self.username = username.downcase
+    # return if username == nil
+    # self.username = username.downcase
+    self.username = username&.downcase
   end
 end
