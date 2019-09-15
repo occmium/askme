@@ -1,18 +1,3 @@
-<!--<h1><%#= @user.name %></h1>-->
-
-<!--<div>-->
-<!--  <img src="<%#= @user.avatar_url %>" alt="Фото">-->
-<!--</div>-->
-<!--<div>-->
-  <%#= image_tag @user.avatar_url, alt: 'Фото' %>
-<!--</div>-->
-
-<!--<div>-->
-  <%#= image_tag user_avatar(@user), alt: 'Фото' %>
-<!--</div>-->
-<!--<h2>@<%#= @user.username %></h2>-->
-<!--<a href="#" class="button button-green">Задать вопрос</a>-->
-
 <div class="user-header text-center">
   <h1 class="title-medium">
     <%# Выводим имя пользователя %>
@@ -34,23 +19,6 @@
   </div>
 </div>
 
-<!--<div class="user-question-form buffer-both">-->
-<!--  <div class="form">-->
-    <%#= form_for @new_question do |f| %>
-      <%#= f.hidden_field :user_id %>
-
-<!--      <div class="form-field">-->
-        <%#= f.label "Ваш вопрос для @#{@user.username}", class: 'form-label' %>
-        <%#= f.text_area :text, class: 'form-textarea' %>
-<!--      </div>-->
-
-<!--      <div class="form-action">-->
-        <%#= submit_tag 'Задать вопрос', class: 'button button-small button-dark' %>
-<!--      </div>-->
-    <%# end %>
-<!--  </div>-->
-<!--</div>-->
-
 <div class="user-question-form-div column-1-4 column-1-4-right" id='ask-form'>
   <div class="user-question-form buffer-both">
     <div class="form">
@@ -70,13 +38,15 @@
   </div>
 </div>
 
-<%# @questions.each do |question| %>
-  <%#= render partial: 'questions/question', object: question %>
-<%# end %>
-
 <div class="column-3-4">
   <div class="user-questions buffer-both">
-    <div class="questions-list">
+    <div class="question-content text-center block">
+      <%= "У пользователя" %>
+      <%= @questions.count %>
+      <%= declension(@questions.count, "вопрос", "вопроса", "вопросов") %>
+      <%= "." %>
+    </div>
+    <div class="questions-list detailed">
       <% @questions.each do |question| %>
         <%= render partial: 'questions/question', object: question %>
       <% end %>

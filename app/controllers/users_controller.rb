@@ -10,6 +10,7 @@ class UsersController < ApplicationController
         username: 'deleted',
         avatar_url: 'https://vk.com/images/deactivated_100.png?ava=1'
       ),
+
       User.new(
         id: 2,
         name: 'Deanon',
@@ -29,12 +30,14 @@ class UsersController < ApplicationController
       name: 'Anon',
       username: 'deleted',
       avatar_url: 'https://vk.com/images/deactivated_100.png?ava=1'
-      # avatar_url: ''
     )
 
     @questions = [
-      Question.new(text: 'Как дела?', created_at: Date.parse('15.09.2019')),
-      Question.new(text: 'В чём сила, брат?', created_at: Date.parse('15.09.2019'))
+      Question.new(text: 'Как дела?', created_at: Date.parse('13.09.2019')),
+      Question.new(text: 'В чём сила, брат?', created_at: Date.parse('14.09.2019')),
+      Question.new(text: 'Куришь?', created_at: Date.parse('15.09.2019')),
+      Question.new(text: 'Спишь?', created_at: Date.parse('15.09.2019')),
+      Question.new(text: 'Ешь?', created_at: Date.parse('15.09.2019'))
     ]
 
     @new_question = Question.new

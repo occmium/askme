@@ -8,4 +8,14 @@ module ApplicationHelper
       asset_path 'avatar.jpg'
     end
   end
+
+  def declension(quantity, question, questions_rus, questions)
+    return questions if (quantity % 100).between?(11, 14)
+
+    case quantity % 10
+    when 1 then question
+    when 2..4 then questions_rus
+    else questions
+    end
+  end
 end

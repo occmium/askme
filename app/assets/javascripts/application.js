@@ -23,3 +23,12 @@ $(function(){
     return false;
   });
 });
+
+$(function () {
+  $('.detailed').hide();
+
+  $('.block').click(function () {
+    $(this).next().slideToggle({duration: 300});
+    return false;
+  });
+});

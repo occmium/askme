@@ -17,7 +17,8 @@ class User < ApplicationRecord
 
   # Задача 49-1 — Валидации: email, username
   # Пункт 1. Проверка формата электронной почты пользователя
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } # для человеческой почты
+  validates :email, format: { with: /@/ } # для типа "админ@почта.рф"
 
   # Задача 49-1 — Валидации: email, username
   # Пункт 2. Проверка максимальной длины юзернейма пользователя (не больше 40 символов)
