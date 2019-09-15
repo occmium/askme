@@ -13,6 +13,8 @@ class User < ApplicationRecord
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
 
+  before_validation :username_in_lowercase
+
   # Задача 49-1 — Валидации: email, username
   # Пункт 1. Проверка формата электронной почты пользователя
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -84,5 +86,10 @@ class User < ApplicationRecord
 
     # Иначе, возвращаем nil
     nil
+  end
+
+  def username_in_lowercase
+    return if username == nil
+    self.username = username.downcase
   end
 end
