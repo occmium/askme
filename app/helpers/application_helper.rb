@@ -9,13 +9,13 @@ module ApplicationHelper
     end
   end
 
-  def declension(quantity, question, questions_rus, questions)
-    return questions if (quantity % 100).between?(11, 14)
+  def declension(quantity, one, few, many)
+    return many if (quantity % 100).between?(11, 14)
 
     case quantity % 10
-    when 1 then question
-    when 2..4 then questions_rus
-    else questions
+    when 1 then one
+    when 2..4 then few
+    else many
     end
   end
 end
