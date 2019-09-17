@@ -1,34 +1,11 @@
 class UsersController < ApplicationController
-
   # Загружаем юзера из базы для экшенов кроме :index, :create, :new
-
   before_action :load_user, except: [:index, :create, :new]
 
   # Проверяем имеет ли юзер доступ к экшену, делаем это для всех действий, кроме
   # :index, :new, :create, :show — к этим действиям есть доступ у всех, даже у
   # тех, у кого вообще нет аккаунта на нашем сайте.
-  #
-  # before_action :authorize_user, except: [:index, :new, :create, :show]
-
-  # def index
-  #   # Создаём массив из двух болванок пользователей. Вызываем метод # User.new, который создает модель, не записывая её в базу.
-  #   # У каждого юзера мы прописали id, чтобы сымитировать реальную
-  #   # ситуацию – иначе не будет работать хелпер путей
-  #   @users = [
-  #     User.new(
-  #       id: 1,
-  #       name: 'Anon',
-  #       username: 'deleted',
-  #       avatar_url: 'https://vk.com/images/deactivated_100.png?ava=1'
-  #     ),
-  #
-  #     User.new(
-  #       id: 2,
-  #       name: 'Deanon',
-  #       username: 'undeleted'
-  #     )
-  #   ]
-  # end
+  before_action :authorize_user, except: [:index, :new, :create, :show]
 
   def index
     # запишем в неё всех пользователей
@@ -37,6 +14,10 @@ class UsersController < ApplicationController
 
   # Действие new будет отзываться по адресу /users/new
   def new
+    # Если пользователь уже авторизован, ему не нужна новая учетная запись,
+    # отправляем его на главную с сообщением.
+    redirect_to root_url, alert: 'Вы уже залогинены' if current_user.present?
+
     # Пока создадим новый экземпляр модели
     @user = User.new
   end
@@ -44,15 +25,7 @@ class UsersController < ApplicationController
   def create
     # Если пользователь уже авторизован, ему не нужна новая учетная запись,
     # отправляем его на главную с сообщением.
-
-
-
-
-    # redirect_to root_url, alert: 'Вы уже залогинены' if current_user.present?
-
-
-
-
+    redirect_to root_url, alert: 'Вы уже залогинены' if current_user.present?
 
     # Иначе, создаем нового пользователя с параметрами, которые нам предоставит
     # метод user_params.
@@ -73,30 +46,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # @user = User.find params[:id]
   end
 
-  # def show
-    # @user = User.new(
-    #   name: 'Anon',
-    #   username: 'deleted',
-    #   avatar_url: 'https://vk.com/images/deactivated_100.png?ava=1'
-    # )
-    #
-    # @questions = [
-    #   Question.new(text: 'Как дела?', created_at: Date.parse('13.09.2019')),
-    #   Question.new(text: 'В чём сила, брат?', created_at: Date.parse('14.09.2019')),
-    #   Question.new(text: 'Куришь?', created_at: Date.parse('15.09.2019')),
-    #   Question.new(text: 'Спишь?', created_at: Date.parse('15.09.2019')),
-    #   Question.new(text: 'Ешь?', created_at: Date.parse('15.09.2019'))
-    # ]
-    #
-    # @new_question = Question.new
-  # end
-
   def update
-    # @user = User.find params[:id]
-
     # Аналогично create, мы получаем параметры нового (обновленного)
     # пользователя с помощью метода user_params, и пытаемся обновить @user с
     # этими значениями.
@@ -113,9 +65,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @user = User.find params[:id]
-
-
     # Достаем вопросы пользователя с помощью метода questions, который мы
     # объявили в модели User (has_many :questions), у результата возврата этого
     # метода вызываем метод order, который отсортирует вопросы по дате.
@@ -128,12 +77,17 @@ class UsersController < ApplicationController
   end
 
   private
+  # Если загруженный из базы юзер и текущий залогиненный не совпадают — посылаем
+  # его с помощью описанного в контроллере ApplicationController метода
+  # reject_user.
+  def authorize_user
+    reject_user unless @user == current_user
+  end
 
   # Загружаем из базы запрошенного юзера, находя его по params[:id].
   def load_user
     @user ||= User.find params[:id]
   end
-
 
   # Явно задаем список разрешенных параметров для модели User. Мы говорим, что
   # у хэша params должен быть ключ :user. Значением этого ключа может быть хэш с
