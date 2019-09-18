@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :users, except: [:destroy] # Ресурс пользователей (экшен destroy не поддерживается)
+  resources :users # Ресурс пользователей c поддержкой удаления
   resources :sessions, only: [:new, :create, :destroy] # Ресурс сессий (только три экшена :new, :create, :destroy)
   resources :questions, except: [:show, :new, :index] # Ресурс вопросов (кроме экшенов :show, :new, :index)
 

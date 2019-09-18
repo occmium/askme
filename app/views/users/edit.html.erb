@@ -62,6 +62,10 @@
       </div>
     <% end %>
 
+    <div class="buffer-top-large">
+      <%= link_to "Удалить аккаунт", @user, method: :delete, data: {confirm: 'Ваш аккаунт будет удалён!'} if current_user == @user %>
+    </div>
+
     <%# Подробнее про помощники для создания форм: %>
     <%# http://guides.rubyonrails.org/form_helpers.html %>
   </div>
