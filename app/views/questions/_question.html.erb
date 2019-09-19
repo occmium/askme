@@ -4,6 +4,17 @@
 
 <div class="question">
   <div class="question-content">
+    <div class="">
+      <%# Если есть известный автор (залогиненый) %>
+      <% if question.author %>
+        <%# Даем ссылку на его профиль %>
+        <%= link_to "От #{question.author.name}", user_path(question.author) %>
+      <% else %>
+        <%# Если нету %>
+        <%= 'автор не представился' %>
+      <% end %>
+    </div>
+
     <%# Текст вопроса %>
     <div class="question-text text-lead">
       <%= question.text %>

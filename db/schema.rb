@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_18_064043) do
+ActiveRecord::Schema.define(version: 2019_09_19_045145) do
 
   create_table "questions", force: :cascade do |t|
     t.string "text"
@@ -18,6 +18,11 @@ ActiveRecord::Schema.define(version: 2019_09_18_064043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "author_id"
+    # Миграция ошибочно названа AddUniqueIndexToQuestion.
+    # Чтобы индекс author_id не был уникальным, опция
+    # unique: true не добавлена в строку
+    t.index ["author_id"], name: "index_questions_on_author_id" #, unique: true
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 

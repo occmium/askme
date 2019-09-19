@@ -16,6 +16,10 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
+    # В действии create контроллера вопросов пропишите в авторы вопроса
+    # текущего пользователя (current_user) перед сохранением модели.
+    @question.author = current_user
+
     if @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан'
     else
