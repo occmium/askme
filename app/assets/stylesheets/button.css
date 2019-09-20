@@ -29,3 +29,7 @@
   line-height: 15px;
   padding: 7px 15px;
 }
+
+.pointer-cursor:hover {
+  cursor: pointer;
+}

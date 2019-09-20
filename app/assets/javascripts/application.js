@@ -25,9 +25,9 @@ $(function(){
 });
 
 $(function () {
-  $('.detailed').hide();
+  $('.questions-list').show();
 
-  $('.block').click(function () {
+  $('.question-content').click(function () {
     $(this).next().slideToggle({duration: 300});
     return false;
   });
