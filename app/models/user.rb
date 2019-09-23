@@ -27,6 +27,10 @@ class User < ApplicationRecord
             length: { maximum: 40 },
             format: { with: /\A[\w]+\z/ }
 
+  # Задача 52-2 — Валидации: background_color
+  # Проверка формата выбора цвета
+  validates :background_color, format: { with: /\#([a-fA-F]|[0-9]){3,6}/ }
+
   # Виртуальное поле, которое не сохраняется в базу. Из него перед сохранением читается пароль,
   # и сохраняется в базу уже зашифрованная версия пароля в
   attr_accessor :password

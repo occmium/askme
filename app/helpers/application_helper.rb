@@ -25,4 +25,13 @@ module ApplicationHelper
   def fa_icon(icon_class)
     content_tag 'span', '', class: "fa fa-#{icon_class}"
   end
+
+  # Хелпер, подставляющий нужный пользователю цвет
+  def background_setting(user, form)
+    if user.background_color?
+      form.color_field :background_color
+    else
+      form.color_field :background_color, value: "#005a55"
+    end
+  end
 end
