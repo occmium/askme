@@ -27,11 +27,7 @@ module ApplicationHelper
   end
 
   # Хелпер, подставляющий нужный пользователю цвет
-  def background_setting(user, form)
-    if user.background_color?
-      form.color_field :background_color
-    else
-      form.color_field :background_color, value: "#005a55"
-    end
+  def background_setting(user)
+    "#005a55" unless user.background_color?
   end
 end
