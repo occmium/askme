@@ -46,7 +46,7 @@
 
 <div class="column-3-4">
   <div class="user-questions buffer-both">
-    <div class="question-content text-center pointer-cursor">
+    <div class="question-content text-center pointer-cursor hide_unhide">
       <%= "У пользователя" %>
       <%= @user.name %>
       <%= "всего" %>
@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <div class="questions-list">
+    <div class="questions-list unhide">
       <% @questions.each do |question| %>
         <%= render partial: 'questions/question', object: question %>
       <% end %>
