@@ -29,7 +29,9 @@ class User < ApplicationRecord
 
   # Задача 52-2 — Валидации: background_color
   # Проверка формата выбора цвета
-  validates :background_color, format: { with: /\A\#([a-fA-F]|[0-9]){3,6}\z/ }
+  validates :background_color,
+            allow_blank: true,
+            format: { with: /\A\#([a-fA-F]|[0-9]){3,6}\z/ }
 
   # Виртуальное поле, которое не сохраняется в базу. Из него перед сохранением читается пароль,
   # и сохраняется в базу уже зашифрованная версия пароля в

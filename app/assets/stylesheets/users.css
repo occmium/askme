@@ -5,11 +5,11 @@
 .user-header {
   padding: 20px 0;
   background: #005a55;
-  color: white;
+  color: #FFFFFF;
 }
 
 .user-header a {
-  color: white;
+  color: #FFFFFF;
 }
 
 .user-image-div {
@@ -34,7 +34,7 @@
 
 .user-details {
   padding: 10px 0;
-  background: white;
+  background: #FFFFFF;
 }
 
 .user-statistics {

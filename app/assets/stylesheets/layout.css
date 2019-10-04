@@ -1,6 +1,6 @@
 body {
  background: #262732;
- color: white;
+ color: #FFFFFF;
 }
 
 a {
@@ -8,7 +8,7 @@ a {
 }
 
 .header {
-  background: white;
+  background: #FFFFFF;
   overflow: hidden;
   vertical-align: baseline;
   padding: 10px 40px;
@@ -34,7 +34,7 @@ a {
 }
 
 .content-wrapper {
-  background: white;
+  background: #FFFFFF;
   padding: 10px;
 }
 
