@@ -25,9 +25,9 @@ $(function(){
 });
 
 $(function () {
-  $('.unhide').show();
+  $('.show').show();
 
-  $('.hide_unhide').click(function () {
+  $('.hide').click(function () {
     $(this).next().slideToggle({duration: 300});
     return false;
   });
