@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-
   resources :users # Ресурс пользователей c поддержкой удаления
   resources :sessions, only: [:new, :create, :destroy] # Ресурс сессий (только три экшена :new, :create, :destroy)
   resources :questions, except: [:show, :new, :index] # Ресурс вопросов (кроме экшенов :show, :new, :index)
+  resources :hashtags, only: [:show], param: :name
 
   root to: 'users#index'
 

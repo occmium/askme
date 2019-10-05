@@ -30,4 +30,12 @@ module ApplicationHelper
   def background_setting(user)
     "#005a55" unless user.background_color?
   end
+
+  # Хелпер, который ищет в буквах все соврадения с признаком хештега и
+  # оборачивает слово в ссылку
+  def hashtag_to_link(text)
+    text.gsub(/#[a-zA-Zа-яА-Я0-9_-]+/) do |word|
+      link_to word, hashtag_url(word.downcase)
+    end
+  end
 end

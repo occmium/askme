@@ -11,11 +11,19 @@ class Question < ApplicationRecord
   # рельсы добавят к нему `_id` и найдут нужное поле в таблице
   belongs_to :author, class_name: 'User', optional: true
 
+  # Создаём прямое соединение многие-ко-многим с другой моделью,
+  # без промежуточной модели. Например, если ваше приложение включает
+  # вопросы (questions) и хештеги (hashtags), где каждый вопрос имеет много
+  # хештегов, и каждый хештег встречается во многих вопросах
+  has_and_belongs_to_many :hashtags
+
   validates :text, :user, presence: true
 
   # Задача 49-1 — Валидации: email, username
   # Пункт 4. Проверка максимальной длины текста вопроса (максимум 255 символов)
   validates :text, length: { maximum: 255 }
+
+  before_save :find_hashtags
 
   # before_validation :before_validation
   # after_validation :after_validation
@@ -42,4 +50,18 @@ class Question < ApplicationRecord
   #     end
   #   end
   # end
+
+  def find_hashtags
+    self.hashtags = "#{text} #{answer}".scan(/#[a-zA-Zа-яА-Я0-9_-]+/).
+      map { |word| word.downcase }.uniq.
+      map { |word| Hashtag.find_or_create_by(name: word) }
+  end
+
+  def each_downcase
+    # will do later
+  end
+
+  def add_tag
+    # will do later
+  end
 end

@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_19_045145) do
+ActiveRecord::Schema.define(version: 2019_10_05_051529) do
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_hashtags_on_name", unique: true
+  end
+
+  create_table "hashtags_questions", id: false, force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.integer "hashtag_id", null: false
+    t.index ["question_id", "hashtag_id"], name: "index_hashtags_questions_on_question_id_and_hashtag_id", unique: true
+  end
 
   create_table "questions", force: :cascade do |t|
     t.string "text"
@@ -19,10 +32,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_045145) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "author_id"
-    # Миграция ошибочно названа AddUniqueIndexToQuestion.
-    # Чтобы индекс author_id не был уникальным, опция
-    # unique: true не добавлена в строку
-    t.index ["author_id"], name: "index_questions_on_author_id" #, unique: true
+    t.index ["author_id"], name: "index_questions_on_author_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 

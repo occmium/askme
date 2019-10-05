@@ -17,13 +17,15 @@
 
     <%# Текст вопроса %>
     <div class="question-text text-lead">
-      <%= question.text %>
+      <%# преобразуем слова в ссылки методом hashtag_to_link %>
+      <%= hashtag_to_link(question.text).html_safe %>
     </div>
 
     <%# Текст ответа, если он есть %>
     <% if question.answer.present? %>
       <div class="question-answer text-lead">
-        <%= question.answer %>
+        <%# преобразуем слова в ссылки методом hashtag_to_link %>
+        <%= hashtag_to_link(question.answer).html_safe %>
       </div>
     <% end %>
 
