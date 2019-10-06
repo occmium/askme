@@ -11,8 +11,8 @@ class UsersController < ApplicationController
     # запишем в неё всех пользователей
     @users = User.all
 
-    # запишем в неё все хештеги по алфавиту
-    @hashtags = Hashtag.all.order(:name)
+    # запишем в неё все связанные с вопросами хештеги по алфавиту
+    @hashtags = Hashtag.joins(:questions).order(:name)
   end
 
   # Действие new будет отзываться по адресу /users/new
