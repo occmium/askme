@@ -56,12 +56,4 @@ class Question < ApplicationRecord
       map { |word| word.downcase }.uniq.
       map { |word| Hashtag.find_or_create_by(name: word) }
   end
-
-  def each_downcase
-    # will do later
-  end
-
-  def add_tag
-    # will do later
-  end
 end
