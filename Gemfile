@@ -10,6 +10,9 @@ gem 'rails_12factor'
 gem 'rails', '5.2.3'
 
 gem 'jquery-rails'
+
+gem 'recaptcha', require: 'recaptcha/rails'
+
 # Use Puma as the app server
 # gem 'puma', '~> 3.11'
 
