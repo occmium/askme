@@ -2,8 +2,6 @@ class SessionsController < ApplicationController
   def new
   end
 
-  # Создаём в объекте session новый факт залогиненности пользователя, если он
-  # правильно сообщил мэйл/пароль
   def create
     user = User.authenticate(params[:email], params[:password])
 
@@ -16,12 +14,9 @@ class SessionsController < ApplicationController
     end
   end
 
-  # Удаляем сессию залогиненного юзера
   def destroy
-    # Затигаем в сесси значение ключа :user_id
     session[:user_id] = nil
 
-    # Редиректим пользователя на главную с сообщением
     redirect_to root_url, notice: 'Вы разлогинились! Приходите еще!'
   end
 end

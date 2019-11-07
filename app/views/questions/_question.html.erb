@@ -1,45 +1,29 @@
-<%# Это фрагмет (паршал, partial) для вывода вопроса. В нем определена %>
-<%# локальная переменная question, в которую при вызове будет передан %>
-<%# как в метод ruby объект после ключа (object: @question) %>
-
 <div class="question">
   <div class="question-content">
     <div class="">
-      <%# Если есть известный автор (залогиненый) %>
       <% if question.author %>
-        <%# Даем ссылку на его профиль %>
         <%= link_to "От #{question.author.name}", user_path(question.author) %>
       <% else %>
-        <%# Если нету %>
         <%= 'автор не представился' %>
       <% end %>
     </div>
 
-    <%# Текст вопроса %>
     <div class="question-text text-lead">
-      <%# преобразуем слова в ссылки методом hashtag_to_link %>
       <%= hashtag_to_link(question.text).html_safe %>
     </div>
 
-    <%# Текст ответа, если он есть %>
     <% if question.answer.present? %>
       <div class="question-answer text-lead">
-        <%# преобразуем слова в ссылки методом hashtag_to_link %>
         <%= hashtag_to_link(question.answer).html_safe %>
       </div>
     <% end %>
 
-    <%# Дата создания вопроса (отформатированная) %>
     <div class="question-date">
       <%= l(question.created_at, format: :short) %>
     </div>
   </div>
 
-  <%# Если адресат вопроса — текущий пользователь, он может редактировать вопрос %>
-  <%# и отвечать на него %>
   <% if question.user == current_user %>
-    <%# Определяем какая будет иконка, если у вопроса нет ответа, то иконка %>
-    <%# овтета на письмо, иначе — карандашик %>
     <% edit_icon = question.answer.blank? ? 'reply' : 'pencil' %>
 
     <div class="question-actions">

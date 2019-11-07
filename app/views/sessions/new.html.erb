@@ -1,10 +1,8 @@
-<%# Страница с формой логина %>
 <div class="container content-wrapper buffer-both">
   <h1 class="title-medium">Войти на сайт</h1>
 
   <div class="column-1-2">
     <div class="form">
-      <%# Рисуем форму, которая будет отправлена по адресу /sessions %>
       <%= form_tag session_path do %>
         <div class="form-field">
           <%= label_tag :email, 'Логин (email)', class: 'form-label' %>

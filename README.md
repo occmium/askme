@@ -1,26 +1,55 @@
-# README
+<a name="to_lift"><h3>Askme</h3></a>
 
-do not forget `bundle && bundle exec rake db:migrate` 
+#### Сеть вопросов и ответов по мотивам [ask.fm](https://ask.fm/)
+Приложение [ХорошиеВопросы](https://askmeoccmium.herokuapp.com/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Учебное приложение из серии уроков онлайн-курса по RubyOnRals
 
-Things you may want to cover:
+[Ruby on Rails](https://goodprogrammer.ru/rails) — Тот самый онлайн-интенсив.
 
-* Ruby version
+#### Содержание
+  - *[Описание](#description)*
+  - *[Функционал](#update)*
+  - *[Использование](#use)*
+  - *[Требования](#version)*
 
-* System dependencies
+<a name="description"><h4>Описание</h4></a>
 
-* Configuration
+Это Rails-приложение, которое создано с нуля, с шифрованием паролей, самодельной аутентификацией и развёрнуто на [Heroku](https://heroku.com/). 
 
-* Database creation
+[Наверх](#to_lift)
 
-* Database initialization
+<a name="update"><h4>Функционал</h4></a>
+  + использован reCAPTCHA
+  + быстрая навигация по сайту с помощью хештегов
+  + продемонстрирован функционал шифрования паролей и аунтетификации пользователей
+  
+  
+[Наверх](#to_lift)
 
-* How to run the test suite
+<a name="use"><h4>Использование</h4></a>
 
-* Services (job queues, cache servers, search engines, etc.)
+Чтобы запустить приложение локально, у Вас на компьютере должен быть установлен интерпритатор [Ruby](https://rubyinstaller.org/). Нужно вызвать консоль (если Вы используете Windows) или терминал (если Вы используете MacOS). Вам потребуется менеджер библиотек.
+  + скопируйте программу из репозитория: `$ git clone https://github.com/occmium/askme.git`
 
-* Deployment instructions
+  + перейдите в папку с программой: `$ cd askme`
+  
+  + для установки менеджера библиотек введите в терминале `$ gem install bundler` и нажмите `Enter`
+  
+  + для запуска менеджера библиотек введите в терминале `$ bundle` и нажмите `Enter`
+  
+  + для первичной настройки базы данных введите в терминале `$ bundle exec rake db:migrate` и нажмите `Enter`
+  
+  + для старта сервера на локальной машине введите в терминале `$ bundle exec rails s` и нажмите `Enter`
+  
+  + для запуска приложения введите в поисковой строке веб-браузера `http://localhost:3000/` и нажмите `Enter`
 
-* ...
+[Наверх](#to_lift)
+<a name="version"><h4>Требования</h4></a>
+
+program|version
+:---:|:---:
+Ruby|2.5.5p157
+Rails|5.2.3
+
+[Наверх](#to_lift)
