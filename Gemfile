@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'uglifier'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem "loofah", ">= 2.3.1"
 
 group :production do
   gem 'pg', '~> 0.21'
